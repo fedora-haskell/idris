@@ -59,6 +59,7 @@ BuildRequires:  ghc-vector-devel
 BuildRequires:  ghc-xml-devel
 BuildRequires:  ghc-zlib-devel
 # End cabal-rpm deps
+BuildRequires:  cabal-dev
 
 %description
 Idris is a general purpose language with full dependent types. It is compiled,
@@ -98,6 +99,7 @@ dependent pairs
 
 
 %build
+cabal-dev list idris > /dev/null || cabal update
 %global cabal cabal-dev -s %{_builddir}/cabal-dev
 %cabal install-deps
 cabal_configure_extra_options=--ghc-option=-O1
