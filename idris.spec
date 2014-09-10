@@ -60,6 +60,8 @@ BuildRequires:  ghc-xml-devel
 BuildRequires:  ghc-zlib-devel
 # End cabal-rpm deps
 BuildRequires:  cabal-dev
+# for newer language-java
+BuildRequires:  alex
 
 %description
 Idris is a general purpose language with full dependent types. It is compiled,
