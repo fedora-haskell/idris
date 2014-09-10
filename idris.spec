@@ -22,7 +22,7 @@ Source0:        http://hackage.haskell.org/package/%{name}-%{version}/%{name}-%{
 BuildRequires:  ghc-Cabal-devel
 BuildRequires:  ghc-rpm-macros
 # Begin cabal-rpm deps:
-BuildRequires:  chrpath
+#BuildRequires:  chrpath
 #BuildRequires:  ghc-annotated-wl-pprint-devel
 BuildRequires:  ghc-ansi-terminal-devel
 BuildRequires:  ghc-ansi-wl-pprint-devel
@@ -36,7 +36,7 @@ BuildRequires:  ghc-containers-devel
 BuildRequires:  ghc-deepseq-devel
 BuildRequires:  ghc-directory-devel
 BuildRequires:  ghc-filepath-devel
-BuildRequires:  ghc-fingertree-devel
+#BuildRequires:  ghc-fingertree-devel
 BuildRequires:  ghc-haskeline-devel
 BuildRequires:  ghc-language-java-devel
 #BuildRequires:  ghc-lens-devel
