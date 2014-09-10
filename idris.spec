@@ -99,7 +99,7 @@ dependent pairs
 
 
 %build
-cabal-dev list idris > /dev/null || cabal update
+[ -d "$HOME/.cabal" ] || cabal update
 %global cabal cabal-dev -s %{_builddir}/cabal-dev
 %cabal install-deps
 cabal_configure_extra_options=--ghc-option=-O1
