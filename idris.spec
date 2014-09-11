@@ -60,6 +60,8 @@ BuildRequires:  ghc-xml-devel
 BuildRequires:  ghc-zlib-devel
 # End cabal-rpm deps
 BuildRequires:  cabal-dev
+# for language-java
+BuildRequires:  alex
 
 
 %description
@@ -102,8 +104,7 @@ dependent pairs
 %build
 [ -d "$HOME/.cabal" ] || cabal update
 %global cabal cabal-dev -s %{_builddir}/cabal-dev
-# language-java needs current alex
-%cabal install alex
+%cabal install language-java-0.2.6
 %cabal install-deps
 cabal_configure_extra_options=--ghc-option=-O1
 %ghc_bin_build
