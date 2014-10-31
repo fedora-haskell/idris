@@ -11,7 +11,7 @@
 %global debug_package %{nil}
 
 Name:           %{pkg_name}
-Version:        0.9.14.3
+Version:        0.9.15.1
 Release:        1%{?dist}
 Summary:        Functional Programming Language with Dependent Types
 
@@ -59,7 +59,7 @@ BuildRequires:  ghc-vector-devel
 BuildRequires:  ghc-xml-devel
 BuildRequires:  ghc-zlib-devel
 # End cabal-rpm deps
-BuildRequires:  cabal-dev
+BuildRequires:  cabal-install > 1.18
 # for language-java
 BuildRequires:  alex
 
@@ -103,9 +103,9 @@ dependent pairs
 
 %build
 [ -d "$HOME/.cabal" ] || cabal update
-%global cabal cabal-dev -s %{_builddir}/cabal-dev
-%cabal install language-java-0.2.6
-%cabal install-deps
+%global cabal cabal
+%cabal sandbox init
+%cabal install --only-dependencies
 cabal_configure_extra_options=--ghc-option=-O1
 %ghc_bin_build
 
@@ -120,12 +120,14 @@ rm -r %{buildroot}%{ghclibdir}
 %doc LICENSE
 %{_bindir}/idris-node
 %{_bindir}/idris-javascript
-%{_bindir}/idris-c
 %{_bindir}/%{name}
 %{_datadir}/%{name}-%{version}
 
 
 %changelog
+* Fri Oct 31 2014 Jens Petersen <petersen@redhat.com> - 0.9.15.1-1
+- build with cabal-install 1.18 sandbox
+
 * Wed Sep 10 2014 Jens Petersen <petersen@redhat.com> - 0.9.14.3-1
 - disable dyn, prof, docs
 - use cabal-dev to build missing deps, and exclude library
