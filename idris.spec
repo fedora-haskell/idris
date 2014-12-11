@@ -38,7 +38,6 @@ BuildRequires:  ghc-directory-devel
 BuildRequires:  ghc-filepath-devel
 #BuildRequires:  ghc-fingertree-devel
 BuildRequires:  ghc-haskeline-devel
-BuildRequires:  ghc-language-java-devel
 #BuildRequires:  ghc-lens-devel
 BuildRequires:  ghc-mtl-devel
 BuildRequires:  ghc-network-devel
@@ -70,31 +69,6 @@ with eager evaluation. Dependent types allow types to be predicated on values,
 meaning that some aspects of a program's behaviour can be specified precisely
 in the type. The language is closely related to Epigram and Agda.
 There is a tutorial at <http://www.idris-lang.org/documentation>.
-Features include:
-
-* Full dependent types with dependent pattern matching
-
-* where clauses, with rule, simple case expressions, pattern matching let and
-lambda bindings
-
-* Type classes, monad comprehensions
-
-* do notation, idiom brackets, syntactic conveniences for lists, tuples,
-dependent pairs
-
-* Totality checking
-
-* Coinductive types
-
-* Indentation significant syntax, extensible syntax
-
-* Tactic based theorem proving (influenced by Coq)
-
-* Cumulative universes
-
-* Simple foreign function interface (to C)
-
-* Hugs style interactive environment.
 
 
 %prep
@@ -125,7 +99,7 @@ rm -r %{buildroot}%{ghclibdir}
 
 
 %changelog
-* Fri Oct 31 2014 Jens Petersen <petersen@redhat.com> - 0.9.15.1-1
+* Sun Nov 30 2014 Jens Petersen <petersen@redhat.com> - 0.9.15.1-1
 - build with cabal-install 1.18 sandbox
 
 * Wed Sep 10 2014 Jens Petersen <petersen@redhat.com> - 0.9.14.3-1
