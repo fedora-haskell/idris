@@ -11,7 +11,7 @@
 %global debug_package %{nil}
 
 Name:           %{pkg_name}
-Version:        0.9.15.1
+Version:        0.9.16
 Release:        1%{?dist}
 Summary:        Functional Programming Language with Dependent Types
 
@@ -50,6 +50,7 @@ BuildRequires:  ghc-text-devel
 BuildRequires:  ghc-time-devel
 BuildRequires:  ghc-transformers-devel
 #BuildRequires:  ghc-trifecta-devel
+BuildRequires:  ghc-uniplate-devel
 BuildRequires:  ghc-unix-devel
 BuildRequires:  ghc-unordered-containers-devel
 BuildRequires:  ghc-utf8-string-devel
@@ -59,8 +60,6 @@ BuildRequires:  ghc-xml-devel
 BuildRequires:  ghc-zlib-devel
 # End cabal-rpm deps
 BuildRequires:  cabal-install > 1.18
-# for language-java
-BuildRequires:  alex
 
 
 %description
@@ -80,7 +79,9 @@ There is a tutorial at <http://www.idris-lang.org/documentation>.
 %global cabal cabal
 %cabal sandbox init
 %cabal install --only-dependencies
+%if 0%{?fedora} < 21
 cabal_configure_extra_options=--ghc-option=-O1
+%endif
 %ghc_bin_build
 
 
@@ -99,6 +100,9 @@ rm -r %{buildroot}%{ghclibdir}
 
 
 %changelog
+* Wed Jan 21 2015 Jens Petersen <petersen@redhat.com> - 0.9.16-1
+- update to 0.9.16
+
 * Sun Nov 30 2014 Jens Petersen <petersen@redhat.com> - 0.9.15.1-1
 - build with cabal-install 1.18 sandbox
 
