@@ -11,13 +11,13 @@
 %global debug_package %{nil}
 
 Name:           %{pkg_name}
-Version:        0.9.16
+Version:        0.9.19
 Release:        1%{?dist}
 Summary:        Functional Programming Language with Dependent Types
 
 License:        BSD
-Url:            http://hackage.haskell.org/package/%{name}
-Source0:        http://hackage.haskell.org/package/%{name}-%{version}/%{name}-%{version}.tar.gz
+Url:            https://hackage.haskell.org/package/%{name}
+Source0:        https://hackage.haskell.org/package/%{name}-%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:  ghc-Cabal-devel
 BuildRequires:  ghc-rpm-macros
@@ -38,16 +38,19 @@ BuildRequires:  ghc-directory-devel
 BuildRequires:  ghc-filepath-devel
 #BuildRequires:  ghc-fingertree-devel
 BuildRequires:  ghc-haskeline-devel
-#BuildRequires:  ghc-lens-devel
 BuildRequires:  ghc-mtl-devel
 BuildRequires:  ghc-network-devel
 BuildRequires:  ghc-optparse-applicative-devel
 #BuildRequires:  ghc-parsers-devel
 BuildRequires:  ghc-pretty-devel
 BuildRequires:  ghc-process-devel
+BuildRequires:  ghc-safe-devel
 BuildRequires:  ghc-split-devel
+# for lens
+BuildRequires:  ghc-template-haskell-devel
 BuildRequires:  ghc-text-devel
 BuildRequires:  ghc-time-devel
+BuildRequires:  ghc-transformers-compat-devel
 BuildRequires:  ghc-transformers-devel
 #BuildRequires:  ghc-trifecta-devel
 BuildRequires:  ghc-uniplate-devel
@@ -56,7 +59,7 @@ BuildRequires:  ghc-unordered-containers-devel
 BuildRequires:  ghc-utf8-string-devel
 BuildRequires:  ghc-vector-binary-instances-devel
 BuildRequires:  ghc-vector-devel
-BuildRequires:  ghc-xml-devel
+BuildRequires:  ghc-zip-archive-devel
 BuildRequires:  ghc-zlib-devel
 # End cabal-rpm deps
 BuildRequires:  cabal-install > 1.18
@@ -93,13 +96,17 @@ rm -r %{buildroot}%{ghclibdir}
 
 %files
 %doc LICENSE
-%{_bindir}/idris-node
+%{_bindir}/idris-c
 %{_bindir}/idris-javascript
+%{_bindir}/idris-node
 %{_bindir}/%{name}
 %{_datadir}/%{name}-%{version}
 
 
 %changelog
+* Sun Sep 13 2015 Jens Petersen <petersen@fedoraproject.org> - 0.9.19-1
+- 0.9.19
+
 * Wed Jan 21 2015 Jens Petersen <petersen@redhat.com> - 0.9.16-1
 - update to 0.9.16
 
