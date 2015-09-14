@@ -12,7 +12,7 @@
 
 Name:           %{pkg_name}
 Version:        0.9.19
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Functional Programming Language with Dependent Types
 
 License:        BSD
@@ -63,7 +63,7 @@ BuildRequires:  ghc-zip-archive-devel
 BuildRequires:  ghc-zlib-devel
 # End cabal-rpm deps
 BuildRequires:  cabal-install > 1.18
-
+Requires:       gcc
 
 %description
 Idris is a general purpose language with full dependent types. It is compiled,
@@ -104,6 +104,9 @@ rm -r %{buildroot}%{ghclibdir}
 
 
 %changelog
+* Mon Sep 14 2015 Jens Petersen <petersen@redhat.com> - 0.9.19-2
+- require gcc
+
 * Sun Sep 13 2015 Jens Petersen <petersen@fedoraproject.org> - 0.9.19-1
 - 0.9.19
 
