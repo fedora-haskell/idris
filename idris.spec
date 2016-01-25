@@ -38,7 +38,10 @@ BuildRequires:  ghc-deepseq-devel
 BuildRequires:  ghc-directory-devel
 BuildRequires:  ghc-filepath-devel
 #BuildRequires:  ghc-fingertree-devel
+# not in epel7 yet
+%if %{defined fedora}
 BuildRequires:  ghc-fsnotify-devel
+%endif
 BuildRequires:  ghc-haskeline-devel
 BuildRequires:  ghc-mtl-devel
 BuildRequires:  ghc-network-devel
