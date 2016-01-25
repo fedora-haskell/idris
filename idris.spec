@@ -11,7 +11,7 @@
 %global debug_package %{nil}
 
 Name:           %{pkg_name}
-Version:        0.9.20.2
+Version:        0.10
 Release:        1%{?dist}
 Summary:        Functional Programming Language with Dependent Types
 
@@ -26,6 +26,7 @@ BuildRequires:  ghc-rpm-macros
 #BuildRequires:  ghc-annotated-wl-pprint-devel
 BuildRequires:  ghc-ansi-terminal-devel
 BuildRequires:  ghc-ansi-wl-pprint-devel
+BuildRequires:  ghc-async-devel
 BuildRequires:  ghc-base64-bytestring-devel
 BuildRequires:  ghc-binary-devel
 BuildRequires:  ghc-blaze-html-devel
@@ -37,6 +38,7 @@ BuildRequires:  ghc-deepseq-devel
 BuildRequires:  ghc-directory-devel
 BuildRequires:  ghc-filepath-devel
 #BuildRequires:  ghc-fingertree-devel
+BuildRequires:  ghc-fsnotify-devel
 BuildRequires:  ghc-haskeline-devel
 BuildRequires:  ghc-mtl-devel
 BuildRequires:  ghc-network-devel
@@ -71,6 +73,20 @@ with eager evaluation. Dependent types allow types to be predicated on values,
 meaning that some aspects of a program's behaviour can be specified precisely
 in the type. The language is closely related to Epigram and Agda.
 There is a tutorial at <http://www.idris-lang.org/documentation>.
+Features include:
+
+* Full, first class, dependent types with dependent pattern matching
+* where clauses, with rule, case expressions, pattern matching let and lambda
+bindings
+* Interfaces (similar to type classes), monad comprehensions
+* do notation, idiom brackets, syntactic conveniences for lists, tuples,
+dependent pairs
+* Totality checking
+* Coinductive types
+* Indentation significant syntax, extensible syntax
+* Cumulative universes
+* Simple foreign function interface (to C)
+* Hugs style interactive environment.
 
 
 %prep
@@ -82,9 +98,6 @@ There is a tutorial at <http://www.idris-lang.org/documentation>.
 %global cabal cabal
 %cabal sandbox init
 %cabal install --only-dependencies
-%if 0%{?fedora} < 21
-cabal_configure_extra_options=--ghc-option=-O1
-%endif
 %ghc_bin_build
 
 
@@ -96,14 +109,18 @@ rm -r %{buildroot}%{ghclibdir}
 
 %files
 %doc LICENSE
+%doc README.md
+%{_bindir}/%{name}
 %{_bindir}/idris-codegen-c
 %{_bindir}/idris-codegen-javascript
 %{_bindir}/idris-codegen-node
-%{_bindir}/%{name}
 %{_datadir}/%{name}-%{version}
 
 
 %changelog
+* Mon Jan 25 2016 Jens Petersen <petersen@redhat.com> - 0.10-1
+- update to 0.10
+
 * Fri Jan  8 2016 Jens Petersen <petersen@redhat.com> - 0.9.20.2-1
 - update to 0.9.20.2
 
