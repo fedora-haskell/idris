@@ -11,7 +11,7 @@
 %global debug_package %{nil}
 
 Name:           %{pkg_name}
-Version:        0.10.1
+Version:        0.11
 Release:        1%{?dist}
 Summary:        Functional Programming Language with Dependent Types
 
@@ -121,6 +121,12 @@ rm -r %{buildroot}%{ghclibdir}
 
 
 %changelog
+* Tue Mar 29 2016 Jens Petersen <petersen@redhat.com> - 0.11-1
+- update to 0.11
+
+* Tue Mar  1 2016 Jens Petersen <petersen@redhat.com> - 0.10.2-1
+- update to 0.10.2
+
 * Fri Feb 26 2016 Jens Petersen <petersen@redhat.com> - 0.10.1-1
 - update to 0.10.1
 
