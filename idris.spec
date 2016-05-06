@@ -11,7 +11,7 @@
 %global debug_package %{nil}
 
 Name:           %{pkg_name}
-Version:        0.11
+Version:        0.11.1
 Release:        1%{?dist}
 Summary:        Functional Programming Language with Dependent Types
 
@@ -118,9 +118,14 @@ rm -r %{buildroot}%{ghclibdir}
 %{_bindir}/idris-codegen-javascript
 %{_bindir}/idris-codegen-node
 %{_datadir}/%{name}-%{version}
+%{_mandir}/man1/idris.1*
 
 
 %changelog
+* Fri May  6 2016 Jens Petersen <petersen@redhat.com> - 0.11.1-1
+- 0.11.1
+- has manpage
+
 * Tue Mar 29 2016 Jens Petersen <petersen@redhat.com> - 0.11-1
 - update to 0.11
 
