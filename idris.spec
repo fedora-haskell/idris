@@ -11,7 +11,7 @@
 %global debug_package %{nil}
 
 Name:           %{pkg_name}
-Version:        0.12
+Version:        0.12.1
 Release:        1%{?dist}
 Summary:        Functional Programming Language with Dependent Types
 
@@ -26,6 +26,7 @@ BuildRequires:  ghc-rpm-macros
 #BuildRequires:  ghc-annotated-wl-pprint-devel
 BuildRequires:  ghc-ansi-terminal-devel
 BuildRequires:  ghc-ansi-wl-pprint-devel
+BuildRequires:  ghc-array-devel
 BuildRequires:  ghc-async-devel
 BuildRequires:  ghc-base64-bytestring-devel
 BuildRequires:  ghc-binary-devel
@@ -69,6 +70,7 @@ BuildRequires:  ghc-zlib-devel
 # End cabal-rpm deps
 BuildRequires:  cabal-install > 1.18
 Requires:       gcc
+Requires:       gmp-devel
 
 %description
 Idris is a general purpose language with full dependent types. It is compiled,
@@ -122,6 +124,11 @@ rm -r %{buildroot}%{ghclibdir}
 
 
 %changelog
+* Thu Jul 28 2016 Jens Petersen <petersen@redhat.com> - 0.12.1-1
+- update to 0.12.1
+- BR array
+- require gmp-devel (#1360168)
+
 * Mon Jun 27 2016 Jens Petersen <petersen@redhat.com> - 0.12-1
 - 0.12
 
