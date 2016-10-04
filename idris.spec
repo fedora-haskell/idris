@@ -11,7 +11,7 @@
 %global debug_package %{nil}
 
 Name:           %{pkg_name}
-Version:        0.12.2
+Version:        0.12.3
 Release:        1%{?dist}
 Summary:        Functional Programming Language with Dependent Types
 
@@ -113,7 +113,7 @@ rm -r %{buildroot}%{ghclibdir}
 
 
 %files
-%doc LICENSE
+%license LICENSE
 %doc README.md
 %{_bindir}/%{name}
 %{_bindir}/idris-codegen-c
@@ -124,6 +124,9 @@ rm -r %{buildroot}%{ghclibdir}
 
 
 %changelog
+* Tue Oct  4 2016 Jens Petersen <petersen@redhat.com> - 0.12.3-1
+- use license macro
+
 * Tue Aug  9 2016 Jens Petersen <petersen@redhat.com> - 0.12.2-1
 - 0.12.2
 
