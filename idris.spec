@@ -11,13 +11,14 @@
 %global debug_package %{nil}
 
 Name:           %{pkg_name}
-Version:        0.12.3
+Version:        0.99
 Release:        1%{?dist}
 Summary:        Functional Programming Language with Dependent Types
 
 License:        BSD
 Url:            https://hackage.haskell.org/package/%{name}
 Source0:        https://hackage.haskell.org/package/%{name}-%{version}/%{name}-%{version}.tar.gz
+Patch0:         idris-0.99-datadir-3550.patch
 
 BuildRequires:  ghc-Cabal-devel
 BuildRequires:  ghc-rpm-macros
@@ -95,7 +96,7 @@ dependent pairs
 
 
 %prep
-%setup -q
+%autosetup -p1
 
 
 %build
@@ -110,6 +111,8 @@ dependent pairs
 %ghc_bin_install
 
 rm -r %{buildroot}%{ghclibdir}
+# cabal-install-1.24 installs $libdir/$arch-linux-ghc-$version/libHSidris-*.so
+find %{buildroot}%{_libdir} -name "libHSidris-%{version}-*.so" | xargs rm
 
 
 %files
@@ -124,6 +127,10 @@ rm -r %{buildroot}%{ghclibdir}
 
 
 %changelog
+* Sat Dec  3 2016 Jens Petersen <petersen@redhat.com> - 0.99-1
+- 0.99 release
+- patch doc
+
 * Tue Oct  4 2016 Jens Petersen <petersen@redhat.com> - 0.12.3-1
 - use license macro
 
