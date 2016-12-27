@@ -12,7 +12,7 @@
 
 Name:           %{pkg_name}
 Version:        0.99
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Functional Programming Language with Dependent Types
 
 License:        BSD
@@ -111,8 +111,8 @@ dependent pairs
 %ghc_bin_install
 
 rm -r %{buildroot}%{ghclibdir}
-# cabal-install-1.24 installs $libdir/$arch-linux-ghc-$version/libHSidris-*.so
-find %{buildroot}%{_libdir} -name "libHSidris-%{version}-*.so" | xargs rm
+## cabal-install-1.24 installs $libdir/$arch-linux-ghc-$version/libHSidris-*.so
+#find %{buildroot}%{_libdir} -name "libHSidris-%{version}-*.so" | xargs -r rm
 
 
 %files
@@ -127,9 +127,12 @@ find %{buildroot}%{_libdir} -name "libHSidris-%{version}-*.so" | xargs rm
 
 
 %changelog
+* Tue Dec 27 2016 Jens Petersen <petersen@redhat.com> - 0.99-2
+- rebuild
+
 * Sat Dec  3 2016 Jens Petersen <petersen@redhat.com> - 0.99-1
 - 0.99 release
-- patch doc
+- datadir patch from upstream
 
 * Tue Oct  4 2016 Jens Petersen <petersen@redhat.com> - 0.12.3-1
 - use license macro
