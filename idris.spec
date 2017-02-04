@@ -12,7 +12,7 @@
 
 Name:           %{pkg_name}
 Version:        0.99
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Functional Programming Language with Dependent Types
 
 License:        BSD
@@ -97,6 +97,8 @@ dependent pairs
 
 %prep
 %autosetup -p1
+cabal-tweak-flag FFI True
+cabal-tweak-flag GMP True
 
 
 %build
@@ -127,6 +129,9 @@ rm -r %{buildroot}%{ghclibdir}
 
 
 %changelog
+* Sat Feb  4 2017 Jens Petersen <petersen@redhat.com> - 0.99-3
+- enable FFI and GMP flags
+
 * Tue Dec 27 2016 Jens Petersen <petersen@redhat.com> - 0.99-2
 - rebuild
 
