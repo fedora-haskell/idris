@@ -11,14 +11,13 @@
 %global debug_package %{nil}
 
 Name:           %{pkg_name}
-Version:        0.99
-Release:        3%{?dist}
+Version:        0.99.1
+Release:        1%{?dist}
 Summary:        Functional Programming Language with Dependent Types
 
 License:        BSD
 Url:            https://hackage.haskell.org/package/%{name}
 Source0:        https://hackage.haskell.org/package/%{name}-%{version}/%{name}-%{version}.tar.gz
-Patch0:         idris-0.99-datadir-3550.patch
 
 BuildRequires:  ghc-Cabal-devel
 BuildRequires:  ghc-rpm-macros
@@ -129,6 +128,9 @@ rm -r %{buildroot}%{ghclibdir}
 
 
 %changelog
+* Sun Mar 12 2017 Jens Petersen <petersen@redhat.com> - 0.99.1-1
+- 0.99.1
+
 * Sat Feb  4 2017 Jens Petersen <petersen@redhat.com> - 0.99-3
 - enable FFI and GMP flags
 
