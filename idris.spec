@@ -23,7 +23,9 @@ BuildRequires:  ghc-Cabal-devel
 BuildRequires:  ghc-rpm-macros
 # Begin cabal-rpm deps:
 #BuildRequires:  chrpath
+%if %{defined fedora}
 BuildRequires:  ghc-aeson-devel
+%endif
 #BuildRequires:  ghc-annotated-wl-pprint-devel
 BuildRequires:  ghc-ansi-terminal-devel
 BuildRequires:  ghc-ansi-wl-pprint-devel
