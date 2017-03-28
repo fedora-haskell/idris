@@ -51,7 +51,9 @@ BuildRequires:  ghc-optparse-applicative-devel
 #BuildRequires:  ghc-parsers-devel
 BuildRequires:  ghc-pretty-devel
 BuildRequires:  ghc-process-devel
+%if 0%{?fedora} > 24
 BuildRequires:  ghc-regex-tdfa-devel
+%endif
 BuildRequires:  ghc-safe-devel
 BuildRequires:  ghc-split-devel
 #BuildRequires:  ghc-terminal-size-devel
