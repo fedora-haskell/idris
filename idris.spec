@@ -11,7 +11,7 @@
 %global debug_package %{nil}
 
 Name:           %{pkg_name}
-Version:        0.99.1
+Version:        0.99.2
 Release:        1%{?dist}
 Summary:        Functional Programming Language with Dependent Types
 
@@ -23,6 +23,7 @@ BuildRequires:  ghc-Cabal-devel
 BuildRequires:  ghc-rpm-macros
 # Begin cabal-rpm deps:
 #BuildRequires:  chrpath
+BuildRequires:  ghc-aeson-devel
 #BuildRequires:  ghc-annotated-wl-pprint-devel
 BuildRequires:  ghc-ansi-terminal-devel
 BuildRequires:  ghc-ansi-wl-pprint-devel
@@ -34,26 +35,26 @@ BuildRequires:  ghc-blaze-html-devel
 BuildRequires:  ghc-blaze-markup-devel
 BuildRequires:  ghc-bytestring-devel
 #BuildRequires:  ghc-cheapskate-devel
+#BuildRequires:  ghc-code-page-devel
 BuildRequires:  ghc-containers-devel
 BuildRequires:  ghc-deepseq-devel
 BuildRequires:  ghc-directory-devel
 BuildRequires:  ghc-filepath-devel
 #BuildRequires:  ghc-fingertree-devel
-# not in epel7 yet
-%if %{defined fedora}
 BuildRequires:  ghc-fsnotify-devel
-%endif
 BuildRequires:  ghc-haskeline-devel
+#BuildRequires:  ghc-ieee754-devel
+BuildRequires:  ghc-libffi-devel
 BuildRequires:  ghc-mtl-devel
 BuildRequires:  ghc-network-devel
 BuildRequires:  ghc-optparse-applicative-devel
 #BuildRequires:  ghc-parsers-devel
 BuildRequires:  ghc-pretty-devel
 BuildRequires:  ghc-process-devel
+BuildRequires:  ghc-regex-tdfa-devel
 BuildRequires:  ghc-safe-devel
 BuildRequires:  ghc-split-devel
-# for lens
-BuildRequires:  ghc-template-haskell-devel
+#BuildRequires:  ghc-terminal-size-devel
 BuildRequires:  ghc-text-devel
 BuildRequires:  ghc-time-devel
 BuildRequires:  ghc-transformers-compat-devel
@@ -66,9 +67,12 @@ BuildRequires:  ghc-utf8-string-devel
 BuildRequires:  ghc-vector-binary-instances-devel
 BuildRequires:  ghc-vector-devel
 BuildRequires:  ghc-zip-archive-devel
-BuildRequires:  ghc-zlib-devel
+BuildRequires:  gmp-devel%{?_isa}
 # End cabal-rpm deps
 BuildRequires:  cabal-install > 1.18
+BuildRequires:  ghc-zlib-devel
+# for lens
+BuildRequires:  ghc-template-haskell-devel
 Requires:       gcc
 Requires:       gmp-devel
 
@@ -128,6 +132,9 @@ rm -r %{buildroot}%{ghclibdir}
 
 
 %changelog
+* Tue Mar 28 2017 Jens Petersen <petersen@redhat.com> - 0.99.2-1
+- 0.99.2
+
 * Sun Mar 12 2017 Jens Petersen <petersen@redhat.com> - 0.99.1-1
 - 0.99.1
 
