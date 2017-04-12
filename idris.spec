@@ -11,7 +11,7 @@
 %global debug_package %{nil}
 
 Name:           %{pkg_name}
-Version:        0.99.2
+Version:        1.0
 Release:        1%{?dist}
 Summary:        Functional Programming Language with Dependent Types
 
@@ -136,6 +136,10 @@ rm -r %{buildroot}%{ghclibdir}
 
 
 %changelog
+* Wed Apr 12 2017 Jens Petersen <petersen@redhat.com> - 1.0-1
+- 1.0
+- https://www.idris-lang.org/idris-1-0-released/
+
 * Tue Mar 28 2017 Jens Petersen <petersen@redhat.com> - 0.99.2-1
 - 0.99.2
 
