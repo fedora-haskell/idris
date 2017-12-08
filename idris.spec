@@ -6,18 +6,19 @@
 %global without_haddock 1
 
 %global pkg_name idris
+%global pkgver %{pkg_name}-%{version}
 
 # no useful debuginfo for Haskell packages without C sources
 %global debug_package %{nil}
 
 Name:           %{pkg_name}
-Version:        1.0
+Version:        1.1.1
 Release:        1%{?dist}
 Summary:        Functional Programming Language with Dependent Types
 
 License:        BSD
 Url:            https://hackage.haskell.org/package/%{name}
-Source0:        https://hackage.haskell.org/package/%{name}-%{version}/%{name}-%{version}.tar.gz
+Source0:        https://hackage.haskell.org/package/%{pkgver}/%{pkgver}.tar.gz
 
 BuildRequires:  ghc-Cabal-devel
 BuildRequires:  ghc-rpm-macros
@@ -42,10 +43,14 @@ BuildRequires:  ghc-containers-devel
 BuildRequires:  ghc-deepseq-devel
 BuildRequires:  ghc-directory-devel
 BuildRequires:  ghc-filepath-devel
-#BuildRequires:  ghc-fingertree-devel
+%if 0%{?fedora} >= 28
+BuildRequires:  ghc-fingertree-devel
+%endif
 BuildRequires:  ghc-fsnotify-devel
 BuildRequires:  ghc-haskeline-devel
-#BuildRequires:  ghc-ieee754-devel
+%if 0%{?fedora} >= 26
+BuildRequires:  ghc-ieee754-devel
+%endif
 BuildRequires:  ghc-libffi-devel
 BuildRequires:  ghc-mtl-devel
 BuildRequires:  ghc-network-devel
@@ -58,7 +63,9 @@ BuildRequires:  ghc-regex-tdfa-devel
 %endif
 BuildRequires:  ghc-safe-devel
 BuildRequires:  ghc-split-devel
-#BuildRequires:  ghc-terminal-size-devel
+%if 0%{?fedora} >= 26
+BuildRequires:  ghc-terminal-size-devel
+%endif
 BuildRequires:  ghc-text-devel
 BuildRequires:  ghc-time-devel
 BuildRequires:  ghc-transformers-compat-devel
@@ -112,7 +119,7 @@ cabal-tweak-flag GMP True
 [ -d "$HOME/.cabal" ] || cabal update
 %global cabal cabal
 %cabal sandbox init
-%cabal install --only-dependencies
+%cabal install --only-dependencies --force-reinstalls
 %ghc_bin_build
 
 
@@ -136,6 +143,9 @@ rm -r %{buildroot}%{ghclibdir}
 
 
 %changelog
+* Wed Dec  6 2017 Jens Petersen <petersen@redhat.com> - 1.1.1-1
+- update to 1.1.1
+
 * Wed Apr 12 2017 Jens Petersen <petersen@redhat.com> - 1.0-1
 - 1.0
 - https://www.idris-lang.org/idris-1-0-released/
