@@ -26,7 +26,6 @@ BuildRequires:  ghc-rpm-macros
 #BuildRequires:  chrpath
 %if %{defined fedora}
 BuildRequires:  ghc-aeson-devel
-%endif
 #BuildRequires:  ghc-annotated-wl-pprint-devel
 BuildRequires:  ghc-ansi-terminal-devel
 BuildRequires:  ghc-ansi-wl-pprint-devel
@@ -80,10 +79,18 @@ BuildRequires:  ghc-vector-devel
 BuildRequires:  ghc-zip-archive-devel
 BuildRequires:  gmp-devel%{?_isa}
 # End cabal-rpm deps
-BuildRequires:  cabal-install > 1.18
-BuildRequires:  ghc-zlib-devel
-# for lens
+%if 0%{?fedora} >= 27
+BuildRequires:  ghc-lens-devel
+%else
 BuildRequires:  ghc-template-haskell-devel
+%endif
+BuildRequires:  ghc-zlib-devel
+%else
+BuildRequires:  ghc-libraries
+BuildRequires:  gmp-devel%{?_isa}
+BuildRequires:  zlib-devel%{?_isa}
+%endif
+BuildRequires:  cabal-install > 1.18
 Requires:       gcc
 Requires:       gmp-devel
 
