@@ -12,7 +12,7 @@
 %global debug_package %{nil}
 
 Name:           %{pkg_name}
-Version:        1.1.1
+Version:        1.2.0
 Release:        1%{?dist}
 Summary:        Functional Programming Language with Dependent Types
 
@@ -26,7 +26,9 @@ BuildRequires:  ghc-rpm-macros
 #BuildRequires:  chrpath
 %if %{defined fedora}
 BuildRequires:  ghc-aeson-devel
-#BuildRequires:  ghc-annotated-wl-pprint-devel
+%if 0%{?fedora} >= 27
+BuildRequires:  ghc-annotated-wl-pprint-devel
+%endif
 BuildRequires:  ghc-ansi-terminal-devel
 BuildRequires:  ghc-ansi-wl-pprint-devel
 BuildRequires:  ghc-array-devel
@@ -36,13 +38,15 @@ BuildRequires:  ghc-binary-devel
 BuildRequires:  ghc-blaze-html-devel
 BuildRequires:  ghc-blaze-markup-devel
 BuildRequires:  ghc-bytestring-devel
-#BuildRequires:  ghc-cheapskate-devel
-#BuildRequires:  ghc-code-page-devel
+%if 0%{?fedora} >= 27
+BuildRequires:  ghc-cheapskate-devel
+BuildRequires:  ghc-code-page-devel
+%endif
 BuildRequires:  ghc-containers-devel
 BuildRequires:  ghc-deepseq-devel
 BuildRequires:  ghc-directory-devel
 BuildRequires:  ghc-filepath-devel
-%if 0%{?fedora} >= 28
+%if 0%{?fedora} >= 27
 BuildRequires:  ghc-fingertree-devel
 %endif
 BuildRequires:  ghc-fsnotify-devel
@@ -51,15 +55,15 @@ BuildRequires:  ghc-haskeline-devel
 BuildRequires:  ghc-ieee754-devel
 %endif
 BuildRequires:  ghc-libffi-devel
+%if 0%{?fedora} >= 27
+BuildRequires:  ghc-megaparsec-devel
+%endif
 BuildRequires:  ghc-mtl-devel
 BuildRequires:  ghc-network-devel
 BuildRequires:  ghc-optparse-applicative-devel
-#BuildRequires:  ghc-parsers-devel
 BuildRequires:  ghc-pretty-devel
 BuildRequires:  ghc-process-devel
-%if 0%{?fedora} > 24
 BuildRequires:  ghc-regex-tdfa-devel
-%endif
 BuildRequires:  ghc-safe-devel
 BuildRequires:  ghc-split-devel
 %if 0%{?fedora} >= 26
@@ -67,9 +71,7 @@ BuildRequires:  ghc-terminal-size-devel
 %endif
 BuildRequires:  ghc-text-devel
 BuildRequires:  ghc-time-devel
-BuildRequires:  ghc-transformers-compat-devel
 BuildRequires:  ghc-transformers-devel
-#BuildRequires:  ghc-trifecta-devel
 BuildRequires:  ghc-uniplate-devel
 BuildRequires:  ghc-unix-devel
 BuildRequires:  ghc-unordered-containers-devel
@@ -77,7 +79,7 @@ BuildRequires:  ghc-utf8-string-devel
 BuildRequires:  ghc-vector-binary-instances-devel
 BuildRequires:  ghc-vector-devel
 BuildRequires:  ghc-zip-archive-devel
-BuildRequires:  gmp-devel%{?_isa}
+BuildRequires:  gmp-devel
 # End cabal-rpm deps
 %if 0%{?fedora} >= 27
 BuildRequires:  ghc-lens-devel
@@ -133,9 +135,8 @@ cabal-tweak-flag GMP True
 %install
 %ghc_bin_install
 
+find %{buildroot}%{_libdir} -name "libHSidris-%{version}-*.so" -delete
 rm -r %{buildroot}%{ghclibdir}
-## cabal-install-1.24 installs $libdir/$arch-linux-ghc-$version/libHSidris-*.so
-#find %{buildroot}%{_libdir} -name "libHSidris-%{version}-*.so" | xargs -r rm
 
 
 %files
@@ -150,6 +151,10 @@ rm -r %{buildroot}%{ghclibdir}
 
 
 %changelog
+* Wed Feb 21 2018 Jens Petersen <petersen@redhat.com> - 1.2.0-1
+- update to 1.2.0
+- https://www.idris-lang.org/idris-1-2-0-released/
+
 * Wed Dec  6 2017 Jens Petersen <petersen@redhat.com> - 1.1.1-1
 - update to 1.1.1
 
