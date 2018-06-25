@@ -12,7 +12,7 @@
 %global debug_package %{nil}
 
 Name:           %{pkg_name}
-Version:        1.2.0
+Version:        1.3.0
 Release:        1%{?dist}
 Summary:        Functional Programming Language with Dependent Types
 
@@ -119,7 +119,7 @@ dependent pairs
 
 
 %prep
-%autosetup -p1
+%setup -q
 cabal-tweak-flag FFI True
 cabal-tweak-flag GMP True
 
@@ -135,7 +135,7 @@ cabal-tweak-flag GMP True
 %install
 %ghc_bin_install
 
-find %{buildroot}%{_libdir} -name "libHSidris-%{version}-*.so" -delete
+find %{buildroot}%{_libdir} -name "libHS%{pkg_name}-%{version}-*.so" -delete
 rm -r %{buildroot}%{ghclibdir}
 
 
@@ -151,6 +151,10 @@ rm -r %{buildroot}%{ghclibdir}
 
 
 %changelog
+* Sun Jun 24 2018 Jens Petersen <petersen@redhat.com> - 1.3.0-1
+- update to 1.3.0
+- https://www.idris-lang.org/idris-1-3-0-released
+
 * Wed Feb 21 2018 Jens Petersen <petersen@redhat.com> - 1.2.0-1
 - update to 1.2.0
 - https://www.idris-lang.org/idris-1-2-0-released/
