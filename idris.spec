@@ -12,7 +12,7 @@
 %global debug_package %{nil}
 
 Name:           %{pkg_name}
-Version:        1.3.0
+Version:        1.3.1
 Release:        1%{?dist}
 Summary:        Functional Programming Language with Dependent Types
 
@@ -125,8 +125,8 @@ cabal-tweak-flag GMP True
 
 
 %build
-[ -d "$HOME/.cabal" ] || cabal update
 %global cabal cabal
+%cabal update
 %cabal sandbox init
 %cabal install --only-dependencies --force-reinstalls
 %ghc_bin_build
@@ -151,6 +151,10 @@ rm -r %{buildroot}%{ghclibdir}
 
 
 %changelog
+* Fri Nov  9 2018 Jens Petersen <petersen@redhat.com> - 1.3.1-1
+- update to 1.3.1
+- https://www.idris-lang.org/idris-1-3-1-released
+
 * Sun Jun 24 2018 Jens Petersen <petersen@redhat.com> - 1.3.0-1
 - update to 1.3.0
 - https://www.idris-lang.org/idris-1-3-0-released
