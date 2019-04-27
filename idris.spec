@@ -135,7 +135,7 @@ cabal-tweak-flag GMP True
 %install
 %ghc_bin_install
 
-find %{buildroot}%{_libdir} -name "libHS%{pkg_name}-%{version}-*.so" -delete
+find %{buildroot}%{_libdir} -name "libHS%{pkgver}-*.so" -delete
 rm -r %{buildroot}%{ghclibdir}
 
 
